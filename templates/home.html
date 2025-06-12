@@ -1,0 +1,43 @@
+ 
+ <!-- Mateus Manoel Encizo Teixeira - Home  -->
+
+ <!DOCTYPE html>
+ <html lang="pt-BR">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="Supermercado online com entrega rápida e frete grátis. Ofertas exclusivas para facilitar suas compras no conforto de casa.">
+     <meta name="keywords" content="supermercado online, frutas frescas, carnes, laticínios, produtos de limpeza, entrega rápida, frete grátis, carrinho de compras, pedidos">
+     <title>Supermercado Online - Entrar</title>
+ 
+     <!-- Tenta carregar o CSS do CDN -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css">
+     <!-- Tenta carregar o CSS do CDN e usa o local se offline -->
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+ </head>
+ <body>
+     <div class="container">
+         <h1 class="text-center mt-5">Bem-vindo ao Sistema do Supermercado</h1>
+         <form class="mt-4">
+             <div class="form-group">
+                 <label for="username">Usuário</label>
+                 <input type="text" class="form-control" id="username" placeholder="Digite seu usuário">
+             </div>
+             <div class="form-group">
+                 <label for="email">E-mail</label>
+                 <input type="text" class="form-control" id="email" placeholder="Digite seu e-mail">
+             </div>
+             <div class="form-group">
+                 <label for="password">Senha</label>
+                 <input type="password" class="form-control" id="password" placeholder="Digite sua senha">
+             </div>
+             
+             <a href="landing.html" class="btn btn-secondary btn-block mt-3">Voltar</a>
+         </form>
+     </div>
+     <!-- Tenta carregar o JS do CDN e usa o local se offline -->
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+ </body>
+ </html>
+ 

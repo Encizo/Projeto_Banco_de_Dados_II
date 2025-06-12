@@ -1,0 +1,94 @@
+ 
+ <!-- Mateus Manoel Encizo Teixeira  -->
+ <!DOCTYPE html>
+ <html lang="pt-BR">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="Supermercado online com entrega rápida e frete grátis. Ofertas exclusivas para facilitar suas compras no conforto de casa.">
+     <meta name="keywords" content="supermercado online, frutas frescas, carnes, laticínios, produtos de limpeza, entrega rápida, frete grátis, carrinho de compras, pedidos">
+     <title>Supermercado Online - Entrar</title>
+ 
+     <!-- Tenta carregar o CSS do CDN -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css">
+     <!-- Tenta carregar o CSS do CDN e usa o local se offline -->
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+ 
+     <style>
+         .navbar-custom {
+             background-color: #f8f9fa;
+             padding: 15px;
+         }
+         .navbar-brand {
+             font-weight: bold;
+             color: #333;
+         }
+         .search-bar {
+             flex-grow: 1;
+         }
+         .search-input {
+             width: 100%;
+             padding: 10px;
+             border-radius: 5px;
+             border: 1px solid #ccc;
+         }
+         .search-button {
+             background-color: #ffc107;
+             border: none;
+             padding: 10px;
+             border-radius: 5px;
+         }
+     </style>
+ </head>
+ <body>
+     <!-- Cabeçalho idêntico ao da página inicial -->
+     <nav class="navbar navbar-expand-lg navbar-custom">
+         <div class="container-fluid">
+             <a class="navbar-brand" href="landing.html">supermercadoweb.com.br</a>
+             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                 <span class="navbar-toggler-icon"></span>
+             </button>
+             <div class="collapse navbar-collapse" id="navbarNav">
+                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                     <li class="nav-item">
+                         <a class="nav-link" href="#">Produtos</a>
+                     </li>
+                 </ul>
+                 <form class="d-flex search-bar">
+                     <input class="search-input" type="search" placeholder="Pesquisar todos" aria-label="Search">
+                     <button class="btn search-button" type="submit">
+                         <img src="/static/images/Lupa.png" width="20px" alt="Pesquisar todos">
+                     </button>
+                 </form>
+                 <ul class="navbar-nav ms-auto">
+                     <!-- Substituir "Entrar" por "Voltar" -->
+                     <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.landing') }}"><strong>Voltar</strong></a>
+                     </li>
+                 </ul>
+             </div>
+         </div>
+     </nav>
+ 
+     <!-- Conteúdo da página -->
+     <div class="container">
+         <h1 class="text-center mt-5">Bem-vindo ao Sistema de Compras Online do SupermercadoWeb</h1>
+         <form class="mt-4">
+             <div class="form-group">
+                 <label for="username">Usuário</label>
+                 <input type="text" class="form-control" id="username" placeholder="Digite seu usuário">
+             </div>
+             <div class="form-group">
+                 <label for="password">Senha</label>
+                 <input type="password" class="form-control" id="password" placeholder="Digite sua senha">
+             </div>
+             <button type="submit" class="btn btn-primary btn-block">Login</button>
+         </form>
+     </div>
+ 
+     <!-- Tenta carregar o JS do CDN e usa o local se offline -->
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+ </body>
+ </html>
+ 

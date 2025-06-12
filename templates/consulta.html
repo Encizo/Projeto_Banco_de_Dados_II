@@ -1,0 +1,214 @@
+<!-- Mateus Manoel Encizo Teixeira - consulta.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar Dados</title>
+    <!-- Incluindo o Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilização personalizada */
+        .navbar-custom {
+            background-color: #f8f9fa;
+            padding: 15px;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #333;
+        }
+        .search-bar {
+            flex-grow: 1;
+        }
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .search-button {
+            background-color: #ffc107;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .green-link {
+            color: darkgreen;
+            text-decoration: none;
+        }
+        .green-link:hover {
+            text-decoration: underline;
+        }
+        /* Estilo para a mensagem de erro */
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+            display: none; /* Inicialmente oculta */
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho completo -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <!-- Link para voltar à página inicial -->
+            <a class="navbar-brand" href="{{ url_for('main.index') }}">supermercadoweb.com.br</a>
+
+            <!-- Ícone de navegação para telas pequenas -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Barra de pesquisa -->
+                <form class="d-flex search-bar">
+                    <input class="search-input" type="search" placeholder="Pesquisar todos" aria-label="Search">
+                    <button class="btn search-button" type="submit">
+                        <img src="/static/images/Lupa.png" width="20px" alt="Pesquisar todos">
+                    </button>
+                </form>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <!-- Substituído "Entrar" por "Voltar" -->
+                        <a class="nav-link" href="{{ url_for('main.index') }}"><strong>Voltar</strong></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Bloco para exibir mensagens Flash -->
+        <div class="mt-3">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <div class="container">
+
+
+                <h2 class="text-center mt-4">Consultar Dados</h2>
+        
+                <!-- Formulário de Seleção -->
+                <form method="POST" class="mt-4">
+                    <div class="form-group">
+                        <label for="consulta_selecionada">Escolha uma consulta:</label>
+                        <select class="form-select" id="consulta_selecionada" name="consulta_selecionada" required>
+                            <option value="" disabled selected>Selecione uma opção</option>
+                            {% for view in views_disponiveis %}
+                                <option value="{{ view }}" {% if view == view_selecionada %}selected{% endif %}>
+                                    {{ view.replace('_', ' ').capitalize() }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Consultar</button>
+                </form>
+        
+                <!-- Exibição dos resultados -->
+                {% if resultados %}
+                    <div class="table-responsive">
+                        {% if view_selecionada %}
+                            <h3 class="mt-4 text-center">Resultados da consulta "{{ view_selecionada.replace('_', ' ').capitalize() }}"</h3>
+                        {% endif %}
+                        <table class="table table-striped table-bordered mt-3">
+                            <thead>
+                                <tr>
+                                    {% for coluna in colunas %}
+                                        <th>{{ coluna }}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for linha in resultados %}
+                                    <tr>
+                                        {% for valor in linha %}
+                                            <td>{{ valor }}</td>
+                                        {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% elif view_selecionada %}
+                    <p class="text-center text-danger mt-4">Nenhum resultado encontrado para "{{ view_selecionada }}".</p>
+                {% endif %}
+
+                <hr class="mt-5">
+
+                <h2 class="text-center mt-5">Consultar Stored Procedure</h2>
+
+                <form method="POST" class="mt-4">
+                    <div class="form-group">
+                        <label for="procedure_selecionada">Escolha uma Procedure:</label>
+                        <select class="form-select" id="procedure_selecionada" name="procedure_selecionada" required>
+                            <option value="" disabled selected>Selecione uma opção</option>
+                            {% for procedure, params in procedures_disponiveis.items() %}
+                                <option value="{{ procedure }}" {% if procedure == procedure_selecionada %}selected{% endif %}>
+                                    {{ procedure.replace('_', ' ').capitalize() }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                
+                    <div class="form-group mt-3">
+                        <label for="parametro">Parâmetro:</label>
+                        <input type="text" class="form-control" id="parametro" name="parametro" required>
+                    </div>
+                
+                    <button type="submit" class="btn btn-primary mt-3">Executar Procedure</button>
+                </form>
+                
+                {% if procedure_selecionada %}
+                    {% if procedure_resultado is not none %}
+                        <h3 class="mt-4 text-center">Resultado da Procedure "{{ procedure_selecionada }}"</h3>
+                        <p class="text-center"><strong>Total Gasto:</strong> R$ {{ procedure_resultado }}</p>
+                    {% elif procedure_resultados %}
+                        <div class="table-responsive">
+                            <h3 class="mt-4 text-center">Resultados da Procedure "{{ procedure_selecionada }}"</h3>
+                            <table class="table table-striped table-bordered mt-3">
+                                <thead>
+                                    <tr>
+                                        {% for coluna in procedure_colunas %}
+                                            <th>{{ coluna }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for linha in procedure_resultados %}
+                                        <tr>
+                                            {% for valor in linha %}
+                                                <td>{{ valor }}</td>
+                                            {% endfor %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <hr class="mt-5">
+                    {% else %}
+                        <p class="text-center text-danger mt-4">Nenhum resultado encontrado para "{{ procedure_selecionada }}".</p>
+                    {% endif %}
+                {% endif %}
+
+            </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

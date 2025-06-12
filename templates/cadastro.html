@@ -1,0 +1,84 @@
+<!-- Mateus Manoel Encizo Teixeira -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Supermercado online com entrega rápida e frete grátis. Ofertas exclusivas para facilitar suas compras no conforto de casa.">
+    <meta name="keywords" content="supermercado online, frutas frescas, carnes, laticínios, produtos de limpeza, entrega rápida, frete grátis, carrinho de compras, pedidos">
+    <title>Supermercado Online - Cadastro</title>
+    
+    <!-- CSS do Bootstrap (CDN) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css">
+    <!-- CSS local (para fallback ou personalização) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('main.index') }}">supermercadoweb.com.br</a>
+            <div class="collapse navbar-collapse">
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteúdo principal -->
+    <div class="container">
+        <!-- Bloco para exibir mensagens Flash -->
+        <div class="mt-3">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <!-- Título -->
+        <h1 class="text-center mt-5">Bem-vindo ao Sistema do Supermercado</h1>
+        
+        <!-- Formulário de cadastro -->
+        <form class="mt-4" action="{{ url_for('main.add_user') }}" method="POST">
+            <!-- Campo Usuário -->
+            <div class="form-group">
+                <label for="username">Usuário</label>
+                <input type="text" class="form-control" id="username" placeholder="Digite seu usuário" name="username" required>
+            </div>
+            
+            <!-- Campo E-mail -->
+            <div class="form-group mt-3">
+                <label for="email">E-mail</label>
+                <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" name="email" required>
+            </div>
+
+            <!-- Campo Telefone -->
+            <div class="form-group mt-3">
+                <label for="telefone">Telefone</label>
+                <input type="tel" class="form-control" id="telefone" placeholder="Digite seu telefone" name="telefone" required>
+            </div>
+
+            <!-- Campo Senha -->
+            <div class="form-group mt-3">
+                <label for="password">Senha</label>
+                <input type="password" class="form-control" id="password" placeholder="Digite sua senha" name="password" required>
+            </div>
+            
+            <!-- Botão de Cadastro -->
+            <button type="submit" class="btn btn-primary btn-block mt-4">Cadastrar</button>
+        </form>
+
+        <!-- Botão Voltar -->
+        <a href="{{ url_for('main.index') }}" class="btn btn-secondary btn-block mt-3">Voltar</a>
+    </div>
+
+    <!-- JavaScript do Bootstrap (CDN) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript local -->
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

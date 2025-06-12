@@ -1,0 +1,189 @@
+<!-- Mateus Manoel Encizo Teixeira - landing.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Supermercado online com entrega rápida e frete grátis. Ofertas exclusivas para facilitar suas compras no conforto de casa.">
+    <meta name="keywords" content="supermercado online, frutas frescas, carnes, laticínios, produtos de limpeza, entrega rápida, frete grátis, carrinho de compras, pedidos">
+    <title>Supermercado Online - Compras Fáceis, Entrega Rápida e Ofertas Exclusivas</title>
+
+    <!-- CSS Externo -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css">
+
+    <!-- CSS Personalizado -->
+    <style>
+        /* Estilo geral */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex-grow: 1;
+        }
+
+        header {
+            background-color: #28a745;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Nome do site */
+        .navbar-brand-container {
+            flex: 2;
+            text-align: center;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        /* Botões abaixo do nome */
+        .action-buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .action-buttons-container button {
+            background-color: white;
+            color: #28a745;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .action-buttons-container button:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Barra de pesquisa */
+        .search-bar-container {
+            flex: 3;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0 20px;
+            position: relative;
+        }
+
+        
+        .search-input {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            max-width: 100%; /* Ajuste de largura */
+        }
+
+        .search-button {
+            background-color: #ffc107;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .search-button:hover {
+            background-color: #e0a800;
+        }
+
+        /* Botão Pedidos */
+        .nav-links {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .nav-button {
+            background-color: white;
+            color: #28a745;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .nav-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Carrinho */
+        .cart {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .cart img {
+            width: 40px;
+        }
+
+        .cart span {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <!-- Nome do site -->
+        <div class="navbar-brand-container">
+            <div class="navbar-brand">supermercadoweb.com.br</div>
+            <div class="action-buttons-container">
+                <button>Entrar</button>
+                <button>Cadastrar</button>
+            </div>
+        </div>
+
+        <!-- Barra de pesquisa -->
+        <div class="search-bar-container">
+            <input type="text" class="search-input" placeholder="Pesquisar todos os produtos">
+            <button class="search-button">🔍</button>
+        </div>
+
+        <!-- Botão Pedidos e Carrinho -->
+        <div class="nav-links">
+            <button class="nav-button">Pedidos</button>
+            <div class="cart">
+                <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Carrinho">
+                <span>Carrinho: 0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <h1></h1>
+        <p></p>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>© 2024 Supermercado Online - Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>

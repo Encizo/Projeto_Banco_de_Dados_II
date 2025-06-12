@@ -1,0 +1,142 @@
+<!-- Mateus Manoel Encizo Teixeira  -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Supermercado online com entrega rápida e frete grátis. Ofertas exclusivas para facilitar suas compras no conforto de casa.">
+    <meta name="keywords" content="supermercado online, frutas frescas, carnes, laticínios, produtos de limpeza, entrega rápida, frete grátis, carrinho de compras, pedidos">
+    <title>Supermercado Online - Entrar</title>
+    
+    <!-- CSS do Bootstrap (CDN) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css">
+    <!-- CSS local (para fallback ou personalização) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+
+    <style>
+        /* Estilização personalizada */
+        .navbar-custom {
+            background-color: #f8f9fa;
+            padding: 15px;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #333;
+        }
+        .search-bar {
+            flex-grow: 1;
+        }
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .search-button {
+            background-color: #ffc107;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .green-link {
+            color: darkgreen;
+            text-decoration: none;
+        }
+        .green-link:hover {
+            text-decoration: underline;
+        }
+        /* Estilo para a mensagem de erro */
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+            display: none; /* Inicialmente oculta */
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho completo -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <!-- Link para voltar à página inicial -->
+            <a class="navbar-brand" href="{{ url_for('main.index') }}">supermercadoweb.com.br</a>
+
+            <!-- Ícone de navegação para telas pequenas -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Barra de pesquisa -->
+                <form class="d-flex search-bar">
+                    <input class="search-input" type="search" placeholder="Pesquisar todos" aria-label="Search">
+                    <button class="btn search-button" type="submit">
+                        <img src="/static/images/Lupa.png" width="20px" alt="Pesquisar todos">
+                    </button>
+                </form>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <!-- Substituído "Entrar" por "Voltar" -->
+                        <a class="nav-link" href="{{ url_for('main.index') }}"><strong>Voltar</strong></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteúdo principal -->
+    <div class="container">
+        <!-- Título da página -->
+        <h1 class="text-center mt-5">Bem-vindo ao Sistema de Compras Online do SupermercadoWeb</h1>
+        
+        <!-- Bloco para exibir mensagens Flash -->
+        <div class="mt-3">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <!-- Formulário de login -->
+        <form class="mt-4" action="{{ url_for('main.entrar') }}" method="POST">
+            <!-- Campo para e-mail -->
+            <div class="form-group">
+                <label for="email"><strong>Email</strong></label>
+                <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" name="email" required>
+            </div>
+            
+            <!-- Campo para senha -->
+            <div class="form-group">
+                <label for="senha"><strong>Senha</strong></label>
+                <input type="password" class="form-control" id="senha" placeholder="Digite sua senha" name="senha" required>
+            </div>
+            
+            <!-- Botão de envio -->
+            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+        </form>
+
+        <!-- Mensagem de erro -->
+        <div class="error-message" id="errorMessage">Usuário ou senha inválidos</div>
+
+        <!-- Links adicionais -->
+        <div class="text-center mt-3">
+            <!-- Botão para se cadastrar -->
+            <a href="{{ url_for('main.cadastrar_usuario') }}" class="btn btn-secondary btn-block">Clique aqui para se cadastrar</a>
+            <br><br>
+            
+            <!-- Link para recuperação de senha -->
+            <a href="{{ url_for('main.esqueci_senha') }}" class="green-link">Esqueci minha senha</a>
+        </div>
+    </div>
+
+    <!-- JavaScript do Bootstrap (CDN) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript local -->
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
